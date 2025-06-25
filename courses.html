@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickCash Courses</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0f0f2d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader span {
+      color: white;
+      font-size: 1.8rem;
+      animation: typing 2s steps(22) infinite;
+      border-right: 3px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    @keyframes typing {
+      0% { width: 0 }
+      50% { width: 100% }
+      100% { width: 0 }
+    }
+
+    .container {
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .course-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: 260px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .course-card h3 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .course-card:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .course-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <span>Loading Courses...</span>
+  </div>
+
+  <h1 style="text-align:center; padding-top:2rem;">📘 Choose a Course</h1>
+  <div class="container" id="courses">
+
+    <div class="course-card" onclick="prank('forex')">
+      <h3>Forex Trading</h3>
+    </div>
+
+    <div class="course-card" onclick="prank('affiliate')">
+      <h3>Affiliate Marketing</h3>
+    </div>
+
+    <div class="course-card" onclick="prank('crypto')">
+      <h3>Crypto Mastery</h3>
+    </div>
+
+    <div class="course-card" onclick="prank('copywriting')">
+      <h3>Copywriting Skills</h3>
+    </div>
+
+    <div class="course-card" onclick="prank('ecommerce')">
+      <h3>E-commerce Bootcamp</h3>
+    </div>
+
+  </div>
+
+  <script>
+    // LOADER
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.opacity = '0';
+        setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
+        showCards();
+      }, 2000);
+    });
+
+    // CARD ANIMATION
+    function showCards() {
+      const cards = document.querySelectorAll('.course-card');
+      cards.forEach((card, i) => {
+        setTimeout(() => card.classList.add('show'), i * 200);
+      });
+    }
+
+    // PRANK MESSAGES
+    function prank(course) {
+      const roles = ['Student', 'Employed', 'Unemployed'];
+      const role = localStorage.getItem('userRole') || roles[Math.floor(Math.random() * roles.length)];
+      const pranks = {
+        forex: {
+          Student: [
+            "📉 Bro, you wan dey do forex while still owing textbook money? Be calming down 😭",
+            "🤣 Forex no be for Jambite! This na prank platform!"
+          ],
+          Employed: [
+            "💼 Oga Forex Master, go back to your 9–5 jare 😂",
+            "You no dey satisfied with salary again? Na prank o!"
+          ],
+          Unemployed: [
+            "📉 Forex ke? You never get job finish 😩",
+            "This na prank! Try find real job first 😂"
+          ]
+        },
+        affiliate: {
+          Student: [
+            "📚 Try learn HTML first biko 🤣",
+            "Affiliate for weytin? You go cry if you see your conversion rate 😭"
+          ],
+          Employed: [
+            "Oga boss, leave affiliate for TikTok boys 😂",
+            "You're already working, why suffer more?"
+          ],
+          Unemployed: [
+            "Affiliate? Bros, you need traffic before commission 😭",
+            "Start from CV writing before Affiliate o "
+          ]
+        },
+        crypto: {
+          Student: [
+            " You no go pass maths, but wan enter crypto? ",
+            "Crypto no be play o. This na prank."
+          ],
+          Employed: [
+            "Bros, ETH no be salary bonus ",
+            "Na prank platform. No investment needed."
+          ],
+          Unemployed: [
+            "Who go fund your crypto wallet, spirit?",
+            "Bros calm down. This na prank!"
+          ]
+        },
+        copywriting: {
+          Student: [
+            "You wey still dey copy assignment wan do copywriting? ",
+            "Grammar dey shake o! This na prank."
+          ],
+          Employed: [
+            "Oga writer! You're in the wrong place ",
+            "You better write resignation letter — this na prank!"
+          ],
+          Unemployed: [
+            "No brand go hire you now — prank things ",
+            "Practice writing your CV first "
+          ]
+        },
+        ecommerce: {
+          Student: [
+            "You wan sell wetin? Assignment?",
+            "Na prank! You no ready for ecommerce wahala."
+          ],
+          Employed: [
+            "Shopify master! You still dey collect salary",
+            "Why you dey double hustle? This na prank."
+          ],
+          Unemployed: [
+            "You need capital first o",
+            "Abeg try another skill — this na prank!"
+          ]
+        }
+      };
+
+      const options = pranks[course][role];
+      const msg = options[Math.floor(Math.random() * options.length)];
+      alert(msg);
+    }
+  </script>
+</body>
+</html>
