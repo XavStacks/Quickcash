@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickCash - Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-animation"></div>
+
+  <div class="login-container">
+    <h1 class="typing-text" id="header-text"></h1>
+
+    <form id="login-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="password" placeholder="Password" required />
+    
+      <select id="user-role" required />
+  <option value="" disabled selected>Select your status</option>
+  <option value="Student"> Student</option>
+  <option value="Employed"> Employed</option>
+  <option value="Unemployed">Unemployed</option>
+</select>
+      <label class="terms">
+        <input type="checkbox" required /> I agree to the Terms & Conditions
+      </label>
+      <button type="submit">Create Account</button>
+    </form>
+
+    <div id="loader" class="loader hidden"></div>
+
+    <p class="quote">"Legit hustle starts here."</p>
+  </div>
+
+  <script>
+    // Typing Effect
+    const text = "Welcome to QuickCash";
+    let i = 0;
+    const speed = 70;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("header-text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    typeWriter();
+
+    // Handle Login
+    const form = document.getElementById("login-form");
+    const loader = document.getElementById("loader");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      form.classList.add("hidden");
+      loader.classList.remove("hidden");
+
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 3000);
+    });
+    form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const role = document.getElementById("user-role").value;
+  localStorage.setItem("userRole", role);
+
+  form.classList.add("hidden");
+  loader.classList.remove("hidden");
+
+  setTimeout(() => {
+    window.location.href = "dashboard.html";
+  }, 3000);
+});
+  </script>
+</body>
+</html>

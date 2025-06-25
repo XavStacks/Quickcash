@@ -1,0 +1,129 @@
+/* Background animation */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0a0f2c;
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+}
+
+.bg-animation {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, #120338, #040d3d, #1b006d);
+  background-size: 400% 400%;
+  animation: backgroundMove 15s ease infinite;
+  z-index: -1;
+}
+
+@keyframes backgroundMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Login container */
+.login-container {
+  width: 90%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 100px auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  text-align: center;
+  color: #fff;
+}
+
+.typing-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  height: 50px;
+  margin-bottom: 20px;
+  color: #00ffff;
+  font-family: monospace;
+}
+
+/* Form styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select[id="user-role"]
+ {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 8px;
+}
+select {
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+
+button {
+  margin-top: 10px;
+  padding: 12px 30px;
+  background: #00ffff;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00bfbf;
+}
+
+.terms {
+  font-size: 0.8rem;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+/* Loader */
+.loader {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  border: 5px solid #00ffff;
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none;
+}
+
+.quote {
+  margin-top: 20px;
+  font-style: italic;
+  font-family: 'Dancing Script', cursive;
+  color: #aaa;
+  font-size: 0.9rem;
+}
